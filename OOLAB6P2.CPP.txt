@@ -1,0 +1,87 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+
+
+
+class base
+{
+protected:
+ int z ;
+
+
+public:
+ void setz(int m )
+  { z=m ;}
+ int getz()
+  {return z ; }
+ base()
+ {z=0 ;}
+ base(int m)
+ {z=m ;}
+
+};
+
+class base1:virtual public base
+{
+protected:
+ int x ;
+
+
+public:
+ void setx(int m )
+  { x=m ;}
+ int getx()
+  {return x ; }
+ base1()
+ {x=0 ;}
+ base1(int m):base(m)
+ {x=m ;}
+
+};
+
+class base2:virtual public base
+{
+protected:
+ int y ;
+
+
+public:
+ void sety(int m )
+  { y=m ;}
+ int gety()
+  {return y ; }
+ base2()
+ {y=0 ;}
+ base2(int m):base(m)
+ {y=m ;}
+
+};
+
+class derived:public base1,public base2
+{
+
+public:
+
+ derived()
+ {}
+ derived(int m,int n):base2(m),base1(n)
+ {}
+ int product()
+ {return x*y*z;}
+ int sum()
+ {return x+y+z;}
+
+};
+
+
+void main()
+{
+ derived div(5,7);
+ cout<<"product="<<div.product()<<endl ;
+ cout<<"sum="<<div.sum()<<endl ;
+
+
+ getch();
+ clrscr();
+}

@@ -1,0 +1,100 @@
+#include<iostream.h>
+#include<string.h>
+#include<conio.h>
+#include<fstream.h>
+
+class student
+{ private:
+    int id;
+    char *name;
+  public:
+   student()             //default constructor
+   {  id=0;
+      name=new char[8] ;
+      strcpy(name,"No Name") ;
+   }
+
+   student(int i,char *n)
+   { id=i ;
+     int s ;
+     s=strlen(n)+1;
+     name=new char[s];
+     strcpy(name,n);
+   }
+
+void  student:: setid(int i)
+{
+id=i;
+}
+void  student:: setname(char n[])
+{delete(name);
+ name=new char[strlen(n)+1];
+ strcpy(name,n);
+}
+int   student:: getid(void)
+{  return id;
+}
+char* student:: getname(void)
+{   return name ;
+}
+
+friend ostream& operator<<(ostream& out , student s);
+friend istream& operator>>(istream& in , student &s) ;
+};
+
+ostream& operator<<(ostream& out , student s)
+{
+ out<<s.id<<endl;
+ out<<s.name<<endl;
+ return out;
+}
+istream& operator>>(istream& in , student &s)
+{
+  cout<<"enter id:";
+  in>>s.id;
+  cout<<"enter name:";
+  in>>s.name;
+  return in ;
+}
+
+
+void main()
+{
+ student s1,s2 ,s3,s4;
+ fstream fileobj;
+ fstream fileob ;
+
+
+
+ fileobj.open("file.txt",ios::out); //write
+  cin>>s1;
+  fileobj<<s1;
+  /*cout<<s1; */
+
+ fileobj.close();  //save s and s1
+
+ fileobj.open("file.txt",ios::in);   //read
+
+   fileobj>>s2;
+   cout<<s2;
+
+ fileobj.close();
+
+
+
+fileob.open("file2.txt",ios::out |ios::binary); //write
+cin>>s3;
+fileob.write((char*)&s3 , sizeof(student));
+fileob.close() ;
+
+fileob.open("file2.txt",ios::in |ios::binary); //read
+fileob.read((char*)&s4 , sizeof(student));
+cout<<s4;
+fileob.close() ;
+
+
+
+
+ getch();
+ clrscr();
+}

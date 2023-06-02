@@ -1,0 +1,327 @@
+#include<iostream.h>
+#include<string.h>
+#include<conio.h>
+
+
+class student
+{ private:
+    int id;
+    char *name;
+    int GPA ;
+  public:
+   void  setid(int i);           //setters
+   void  setname(char n[]);     //setters
+   void  setgpa(int gpa);       //setters
+   int   getid(void);            //getters
+   char* getname(void);          //getters
+   int   getgpa(void);           //getters
+
+   student& operator=(student& s);   //equal operator
+   student operator+(student c);     // object1 + object 2
+   student operator+(int gpa);       //object1+ number;
+   friend student operator+(int gpa,student c ); //number+object1
+   student operator+(char * n);           //object + name
+   friend student operator+(char *n,student c ); //name+object1
+   operator char*();    //casting char*
+   operator int();       //casting int
+   student operator++();  //pre increment
+   student operator++(int d);  //post increment
+   int operator==(student c); //object1==object2
+
+
+   student()             //default constructor
+   {  id=0;
+      name=new char[8] ;
+      strcpy(name,"No Name") ;
+      GPA=0;
+   }
+
+   student(int i,char *n,int gpa)
+   { id=i ;
+    GPA=gpa;
+     int s ;
+     s=strlen(n)+1;
+     name=new char[s];
+     strcpy(name,n);
+   }
+
+   ~student()           //destructor
+   {delete(name);}
+
+
+   student(student &rst); //copy constructor
+};
+
+struct student fillstd(void);
+void printstd(struct student s );
+
+void main()
+{
+  student s1;
+/* cout<< s1.getid()<<endl;
+ cout<< s1.getname()<<endl;
+ cout<< s1.getgpa()<<endl;
+ */
+ /*
+  s1=fillstd();
+  printstd(s1);
+  student t;
+  t=s1;
+  printstd(t);
+
+  cout<<"*****copy"<<endl;
+  student s2 ;
+
+  s2=fillstd();
+  printstd(s2);
+
+  student s3;
+  s3=s2+5;
+  printstd(s3);
+
+  cout<<"*****gpa+numb"<<endl;
+
+  student s4 ;
+
+  s4=fillstd();
+  printstd(s4);
+
+  student s5;
+  s5=5+s4;
+  printstd(s5);
+
+  cout<<"*****numb+gpa"<<endl;
+
+ */
+ /*
+  student s6 ;
+
+  s6=fillstd();
+  printstd(s6);
+
+  student s7;
+  s7=s6+"Elsayed";
+  printstd(s7);
+
+  cout<<"*****object+name"<<endl;
+    student s8 ;
+
+  s8=fillstd();
+  printstd(s8);
+
+  student s9;
+  s9="Mennat"+s8;
+  printstd(s9);
+
+  cout<<"*****name+object"<<endl;
+  */
+ /*
+   student s10;
+   s10=fillstd();
+  printstd(s10);
+
+  student s11;
+  s11=++s10 ;
+  printstd(s11);
+  cout<<"*****pre increment"<<endl;
+
+
+     student s12;
+   s12=fillstd();
+  printstd(s12);
+
+  student s13;
+  s13=s12++ ;
+  printstd(s13);
+  cout<<"*****post increment"<<endl;
+  */
+ /*
+    student s14;
+   s14=fillstd();
+   printstd(s14);
+
+  student s15;
+  printstd(s15);
+  int x=(s15==s14) ;
+  if(x==0)
+  {cout<<"not equal"<<endl; }
+  else
+  {cout<<"equal" <<endl; }
+
+  cout<<"*****compare operator"<<endl;
+
+ */
+
+   student s16;
+   s16=fillstd();
+   printstd(s16);
+
+   char *ch=(char*)s16;    // return name of object
+   cout<< ch <<endl;
+
+      student s17;
+   s17=fillstd();            // return gpa of object
+   printstd(s17);
+
+   int y=(int) s17 ;
+   cout<< y <<endl;
+getch();
+clrscr();
+}
+
+
+
+void  student:: setid(int i)
+{
+id=i;
+}
+
+void  student:: setgpa(int gpa)
+{
+GPA=gpa;
+}
+void  student:: setname(char n[])
+{delete(name);
+ name=new char[strlen(n)+1];
+ strcpy(name,n);
+}
+int   student:: getid(void)
+{  return id;
+}
+char* student:: getname(void)
+{   return name ;
+}
+int   student:: getgpa(void)
+{  return GPA;
+}
+
+
+
+
+struct student fillstd(void)
+{
+  student s ; int id ;char name[20];int gpa;
+  cout<<"Enter id:" ;
+  cin>>id;
+  s.setid(id);
+  cout<<"Enter name:" ;
+  cin>>name;
+  s.setname(name) ;
+  cout<<"Enter gpa:" ;
+  cin>>gpa;
+  s.setgpa(gpa);
+
+  return s;
+}
+
+void printstd(struct student s)
+{
+ cout<<"id = "<<s.getid()<<endl;
+ cout<<"name = "<<s.getname()<<endl;
+ cout<<"gpa = "<<s.getgpa()<<endl;
+}
+
+student ::student(student &rst)
+{
+id= rst.id ;
+GPA= rst.GPA ;
+name=new char[strlen(rst.name)+1];
+strcpy(name,rst.name);
+}
+
+
+student& student:: operator =(student& s)
+{
+id= s.id ;
+GPA=s.GPA;
+delete(name);
+name=new char[strlen(s.name)+1];
+strcpy(name,s.name);
+return *this;
+}
+
+
+student student:: operator+(student s)   //object1+object 2
+{
+ student t ;
+ t.id=id+s.id ;
+ t.GPA=GPA+s.GPA ;
+ t.name=strcat(name,s.name);
+
+ return t ;
+}
+
+
+student student:: operator+(int gpa)   // object + int
+{
+  student t ;
+  t.GPA=GPA+gpa;
+  t.id=id;
+  strcpy(t.name,name);
+
+  return t;
+
+}
+
+student operator+(int gpa,student c )  //int+object
+{
+student t ;
+t.id=c.id;
+t.GPA=gpa+c.GPA;
+strcpy(t.name,c.name);
+return t ;
+}
+
+
+student student:: operator+(char * n)   // object + char
+{
+  student t ;
+  t.id=id;
+  t.GPA=GPA;
+  delete(t.name);
+  t.name=new char[strlen(n)+1+strlen(t.name)+1];
+  strcpy(t.name,name);
+  strcat(t.name,n);
+  return t;
+
+}
+
+student operator+(char* n,student c )    //char +object
+{
+student t ;
+t.id=c.id;
+t.GPA=c.GPA;
+delete(t.name);
+t.name=new char[strlen(n)+1+strlen(c.name)+1];
+strcpy(t.name,n);
+strcat(t.name,c.name);
+return t ;
+}
+
+student ::operator char*()
+{
+ return name;}
+student ::operator int()
+{
+ return GPA;}
+
+student student::operator++()   //GPA ++ PRE
+{
+  GPA++;
+  id=id;
+  strcpy(name,name);
+  return *this ;
+}
+student student::operator++(int d)     //GPA ++   POST
+{
+  student s;
+  s.id=id;
+  s.name=strcpy(s.name,name);
+  s.GPA=GPA++;
+  return s;
+}
+int student::operator==(student c)  // compare 2 objects
+{
+
+  return ((id==c.id) && (GPA==c.GPA) && (!strcmp(name,c.name)));
+}

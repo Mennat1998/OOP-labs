@@ -1,0 +1,74 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+
+struct student
+{int id ;
+char name[20];
+int grade[3] ;
+};
+
+struct student fillstd(void);
+void printstd(struct student s);
+
+
+void main()
+{ int numb ;
+  int i ;
+  student* ptr ;
+
+  cout<< "enter the number of students: " ;
+  cin>>numb ;
+  ptr=new struct student[numb];
+
+if(ptr!=NULL)
+{
+for(i=0;i<numb;i++)
+{ptr[i]=fillstd();}
+
+for(i=0;i<numb;i++)
+{ printstd(ptr[i]);}
+
+}
+
+delete(ptr);
+getch();
+
+clrscr();
+
+
+}
+
+
+struct student fillstd(void)
+{ student s ;
+  int i ;
+
+ cout<<"Enter ID:" ;
+ cin>>s.id ;
+ cout<<endl ;
+
+ cout<<"Enter name:" ;
+ cin>>s.name ;
+ cout<<endl ;
+
+ for(i=0 ;i<3 ;i++)
+ {
+ cout<<"Enter grade"<<i+1<<":" ;
+ cin>>s.grade[i] ;
+ cout<<endl ;
+ }
+
+ return s ;
+
+}
+void printstd(struct student s)
+{  int i ;
+
+ cout<< "ID:" <<s.id <<endl ;
+ cout<< "name:" <<s.name <<endl ;
+ for(i=0 ;i<3 ;i++)
+ {
+  cout<< "grade" <<i+1 <<":"<<s.grade[i] <<endl ;
+  }
+}

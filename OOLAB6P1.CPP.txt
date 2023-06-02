@@ -1,0 +1,91 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+
+
+
+class person
+{
+protected:
+ int id ;
+ char name[20];
+
+public:
+ void setid(int i )          //set id
+  { id=i ;}
+ void setname(char n[20] )   //set name
+  {strcpy(name,n) ;}
+ int getid()                 //get id
+  {return id ;}
+ char* getname()              //get name
+  {return name ;}
+
+
+ person()                  //default
+ {id= 0 ;
+  strcpy(name,"No name"); }
+
+ person(int i ,char n[20])     //parametrized
+ {id=i ;
+  strcpy(name,n);}
+};
+
+class employee :public person
+{
+protected:
+ int salary ;
+
+public:
+ void setsalary(int s )          //set salary
+  { salary=s ;}
+ int getsalary()                 //get salary
+  {return salary ;}
+
+
+ employee()                     //default
+ {salary= 0 ; }
+
+ employee(int i , char n[20],int s):person(i,n)    //parametried
+ {salary=s ; }
+};
+
+class customer:public person
+{
+protected:
+ char phone[12] ;
+
+public:
+ void setphone(char p[12] )          //set salary
+  { strcpy(phone,p) ;}
+ char* getphone()                 //get salary
+  {return phone ;}
+
+
+ customer()                     //default
+ {strcpy(phone,"NULL") ; }
+
+ customer(int i , char n[20],char p[12]):person(i,n)    //parametried
+ {strcpy(phone,p) ; }
+};
+
+
+void main()
+{
+
+employee e1(22,"Mennatallah",10000);
+cout<<"id:"<<e1.getid()<<endl;
+cout<<"name:"<<e1.getname()<<endl;
+cout<<"salary:"<<e1.getsalary()<<endl;
+customer c1(1,"sonya","0122355");
+cout<<"id:"<<c1.getid()<<endl;
+cout<<"name:"<<c1.getname()<<endl;
+cout<<"phone:"<<c1.getphone()<<endl;
+
+
+getch() ;
+clrscr();
+
+}
+
+
+

@@ -1,0 +1,148 @@
+#include<iostream.h>
+#include<string.h>
+#include<conio.h>
+
+
+class student
+{ private:
+    int id;
+    char *name;
+    static int count ;
+    static char schoolname[20];
+  public:
+   void  setid(int i);           //setters
+   void  setname(char n[]);     //setters
+   int   getid(void);            //getters
+   char* getname(void);          //getters
+   /*static int getcount();
+   static void setschoolname(char name[20]);
+   static char* getschoolname();*/
+   student& operator=(student& s);   //equal operator
+   student()             //default constructor
+   {  id=0;
+      name=new char[8] ;
+      strcpy(name,"No Name") ;
+      count++;
+
+   }
+
+   student(int i,char *n)
+   { id=i ;
+     int s ;
+     s=strlen(n)+1;
+     name=new char[s];
+     strcpy(name,n);
+     count++;
+   }
+
+   ~student()           //destructor
+   {delete(name); count--;}
+
+
+
+   student(student &rst); //copy constructor
+
+   static int getcount()
+   {return count ;}
+   static void setschoolname(char name[])
+   {strcpy(schoolname,name);}
+   static char* getschoolname()
+   {return schoolname ;}
+};
+int student::count=0;
+char student::schoolname[20]="ITI";
+struct student fillstd(void);
+void printstd(struct student s);
+
+
+student& student:: operator =(student& s)
+{
+id= s.id ;
+delete(name);
+name=new char[strlen(s.name)+1];
+strcpy(name,s.name);
+return *this;
+}
+void main()
+{
+  student s1;
+ student s2;
+ student s3;
+
+/* cout<< s1.getid()<<endl;
+ cout<< s1.getname()<<endl;
+ cout<< s1.getschoolname()<<endl;
+ cout<< s1.getcount()<<endl;
+
+  */
+   /* s1.setid(21);
+    s1.setname("Mennatallah");
+
+    cout<<s1.getid()<<endl;
+    cout<<s1.getname()<<endl; */
+
+
+
+  s1=fillstd();
+  printstd(s1);
+  cout<<"*****"<<endl;
+  s2=fillstd();
+  printstd(s2);
+  cout<<"*****"<<endl;
+  s3=fillstd();
+  printstd(s3);
+  cout<<"*****"<<endl;
+
+  cout<<"count="<<student::getcount() ;
+
+getch();
+clrscr();
+}
+
+
+
+void  student:: setid(int i)
+{
+id=i;
+}
+void  student:: setname(char n[])
+{/*delete(name); */
+ name=new char[strlen(n)+1];
+ strcpy(name,n);
+}
+int   student:: getid(void)
+{  return id;
+}
+char* student:: getname(void)
+{   return name ;
+}
+
+
+
+struct student fillstd(void)
+{
+  student s ; int id ;char name[20]; char schoolname[20];
+  cout<<"Enter id:" ;
+  cin>>id;
+  s.setid(id);
+  cout<<"Enter name:" ;
+  cin>>name;
+  s.setname(name) ;
+
+  return s;
+}
+
+void printstd(struct student s)
+{
+ cout<<"id = "<<s.getid()<<endl;
+ cout<<"name = "<<s.getname()<<endl;
+ cout<<"schoolname = "<<s.getschoolname()<<endl;
+}
+
+student ::student(student &rst)
+{
+id= rst.id ;
+name=new char[strlen(rst.name)+1];
+strcpy(name,rst.name);
+count++;
+}

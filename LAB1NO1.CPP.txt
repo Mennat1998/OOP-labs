@@ -1,0 +1,33 @@
+#include<iostream.h>
+#include<conio.h>
+
+
+int boxvolume( int L=2 , int W =3 , int H=1  );
+
+
+void main()
+{
+int v1,v2,v3,v4,v5 ;
+
+v1=boxvolume(2,5,7);
+cout<<"volume 1 equals: "<<v1<<endl;
+v2=boxvolume(4,8);
+cout<<"volume 2 equals: "<<v2<<endl;
+v3=boxvolume(6);
+cout<<"volume 3 equals: "<<v3<<endl;
+v4=boxvolume(9);
+cout<<"volume 4 equals: "<<v4<<endl;
+v5=boxvolume();
+cout<<"volume 5 equals: "<<v5<<endl;
+
+getch();
+clrscr();
+}
+
+int boxvolume( int L , int W , int H )
+{
+ return(L*W*H);
+}
+
+
+

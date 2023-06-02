@@ -1,0 +1,16 @@
+#include<iostream.h>
+#include<conio.h>
+
+int x=30 ;   //Globel
+void main()
+{ int x ; //local
+    cout<<::x ;
+    cout<<endl ;
+
+    x=20 ;
+    cout<< x ;   //x=20
+
+
+    getch();
+    clrscr();
+}

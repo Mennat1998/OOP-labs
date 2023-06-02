@@ -1,0 +1,76 @@
+#include<iostream.h>
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<conio.h>
+
+
+class point
+{ private:
+  int x ;
+  int y ;
+
+  public:
+  point() {x=y=0 ;}
+  point(int m) {x=y=m ;}
+  point(int m , int n){x=m ; y=n ;}
+
+void  setx(int m){x=m ;}
+void  sety(int n){y=n ;}
+int   getx(){return x ;}
+int   gety(){return y ;}
+
+};
+
+class rectangle
+{ point p1,p2;
+  int length ;
+  int width ;
+
+public:
+rectangle(int x1,int y1,int x2, int y2):p1(x1,y1),p2(x2,y2)
+{length=abs(x2-x1);
+ width=abs(y2-y1);
+}
+
+void setp1(int x , int y)
+{
+ p1.setx(x);
+ p1.sety(y);
+ length=abs(p2.getx()-x);
+ width= abs(p2.gety()-y);
+}
+
+
+void setp2(int x , int y)
+{
+ p2.setx(x);
+ p2.sety(y);
+ length=abs(x-p1.getx());
+ width= abs(y-p1.gety());
+}
+
+point getp1(){return p1 ;}
+point getp2(){return p2 ;}
+
+int area()
+{return(length*width);}
+
+};
+
+
+int main()
+
+{
+
+rectangle rect(20,23,50,63);
+cout<<"area of rect is:"<<rect.area()<<endl;
+
+rect.setp1(10,13);  //x1,y1
+cout<<"area of rect is:"<<rect.area()<<endl;
+
+getch();
+clrscr();
+
+return 0;
+}

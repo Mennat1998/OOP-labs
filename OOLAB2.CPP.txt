@@ -1,0 +1,91 @@
+#include<iostream.h>
+#include<string.h>
+#include<conio.h>
+
+
+class student
+{ private:
+    int id;
+    char name[20];
+  public:
+   void  setid(int i);
+   void  setname(char n[20]);
+   int   getid(void);
+   char* getname(void);
+};
+
+
+struct student fillstd(void);
+void printstd(struct student s);
+
+void main()
+{
+  student s1,s2;
+
+
+ /* s1=fillstd();
+  s2=fillstd();
+  printstd(s1);
+  printstd(s2);
+  */
+  int id ; char name[20];
+
+    cout<<"enter id:";
+    cin>> id ;
+    cout<<"enter name:";
+    cin>> name ;
+
+    s1.setid(id);
+    s1.setname(name);
+
+    cout<<s1.getid()<<endl;
+    cout<<s1.getname()<<endl;
+
+    cout<<"enter id:";
+    cin>> id ;
+    cout<<"enter name:";
+    cin>> name ;
+
+    s2.setid(id);
+    s2.setname(name);
+
+    cout<<s2.getid()<<endl;
+    cout<<s2.getname()<<endl;
+
+
+getch();
+clrscr();
+}
+
+
+
+void  student:: setid(int i)
+{ id=i;
+}
+void  student:: setname(char n[20])
+{  strcpy(name,n);
+}
+int   student:: getid(void)
+{  return id;
+}
+char* student:: getname(void)
+{   return name ;
+}
+
+
+struct student fillstd(void)
+{ student s ; int id ;char name[20];
+  cout<<"Enter id:" ;
+  cin>>id;
+  s.setid(id);
+  cout<<"Enter name:" ;
+  cin>>name;
+  s.setname(name) ;
+
+  return s;
+}
+void printstd(struct student s)
+{
+ cout<<"id = "<<s.getid()<<endl;
+ cout<<"name = "<<s.getname()<<endl;
+}
